@@ -1,8 +1,6 @@
-DROP TABLE IF EXISTS student;
+DROP TABLE IF EXISTS thing;
 
-CREATE TABLE student(
-   id SERIAL PRIMARY KEY NOT NULL,
-   name TEXT NOT NULL,
-   num_cats INT NOT NULL,
-   place TEXT
+CREATE TABLE thing (
+  id SERIAL PRIMARY KEY,
+  num INTEGER
 );

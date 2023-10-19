@@ -4,38 +4,36 @@ import dotenv from "dotenv";
 
 dotenv.config();
 
-//console.log('process.env', process.env.PORT);
+const { PORT, DATABASE_URL } = process.env;
+
+const client = new pg.Client({
+  connectionString: DATABASE_URL,
+});
+
+await client.connect();
 
 const app = express();
 
-//console.log(process.env.DATABASE_URL, "url");
-
-const client = new pg.Client({
-  connectionString: process.env.DATABASE_URL,
-});
-
-try {
-  await client.connect();
-} catch (err) {
-  console.error(err);
-}
-
 app.use(express.static("public"));
+app.use(express.json());
 
-app.get("/api/students", (req, res, next) => {
+app.get("/things", (req, res) => {
+  client.query("SELECT * FROM thing").then((result) => {
+    res.json(result.rows);
+  });
+});
+
+app.post("/things", (req, res) => {
+  const { num } = req.body;
+  console.log(req.body);
+
   client
-    .query(`SELECT * FROM student`)
-    .then((data) => {
-      res.json(data);
-    })
-    .catch(next);
+    .query("INSERT INTO thing (num) VALUES ($1) RETURNING *", [num])
+    .then((result) => {
+      res.json(result.rows[0]);
+    });
 });
 
-app.use((err, req, res, next) => {
-  console.error(err);
-  res.sendStatus(500);
-});
-
-app.listen(process.env.PORT, () => {
-  console.log(`listening on Port ${process.env.PORT}`);
+app.listen(PORT, () => {
+  console.log(`Listening on port: ${PORT}`);
 });
