@@ -4,17 +4,100 @@
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js" integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
     <title>MVP Project</title>
     <script defer src="app.js"></script>
+    <link rel="stylesheet" href="styles.css">
 </head>
 
 <body>
-    <form class="number-form">
+
+    <div class="container">
+        <div class="left-side">
+            <img class="signup-svg" src="signup-person.svg" alt="cartoon character">
+        </div>
+        <div class="right-side">
+
+                <form action="#" class="login-form">
+
+                    <h2 class="login-heading">Login your Account</h2>
+    
+                    <label class="login-email-container"> 
+                        Email
+                        <input type="email" name="email" placeholder="johndoe@gmail.com" required />
+                    </label>
+    
+                    <br>
+                    
+                    <label class="login-password-container">
+                        Password
+                        <input type="password" name="password" placeholder="********" required />
+                    </label>
+    
+                    <br>
+    
+                    <button class="login-button" type="button" name="loginButton">
+                        Login-here
+                    </button>
+    
+                    <!-- <br>
+                    - OR -
+                    <br> -->
+    
+                    <p class="message">Create an account? <a href="#">Sign-up</a></p>
+                    
+                </form>
+
+            <form action="#" class="sign-up-form">
+
+                <h2 class="sign-up-heading">Create your account</h2>
+
+                <label class="sign-up-name-container"> 
+                    Name
+                    <!-- min and max length for input? -->
+                    <input type="text" id="firstName" placeholder="John" required />
+                    <input type="text" id="lastName" placeholder="Doe" required />
+                </label>
+
+                <br>
+
+                <label class="sign-up-email-container"> 
+                    Email
+                    <input type="email" name="email" placeholder="johndoe@gmail.com" required />
+                </label>
+
+                <br>
+                
+                <label class="sign-up-password-container">
+                    Password
+                    <input type="password" name="password" placeholder="********" required />
+                </label>
+
+                <br>
+
+                <button class="sign-up-button" type="button" name="signUpButton">
+                    Sign-up
+                </button>
+
+                <!-- <br>
+                - OR -
+                <br> -->
+
+                <p class="message">Already have an account? <a href="#">Log in</a></p>
+                
+            </form>
+
+
+    
+        </div>
+    </div>
+
+    <!-- <form class="number-form">
         <label for="num">Number</label>
         <input type="number" name="num" id="num" />
         <button type="submit">Create Thing</button>
     </form>
-    <div class="thingies"></div>
+    <div class="thingies"></div> -->
 </body>
 
 </html>
