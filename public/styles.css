@@ -44,9 +44,10 @@ body{
     color: blue;
 }
 
-.sign-up-form{
+.signup-form, .signup-svg{
     display: none;
 }
+
 
 /* EMAIL 
 

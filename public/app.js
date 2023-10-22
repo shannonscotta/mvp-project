@@ -1,3 +1,13 @@
+
+
+$(document).ready(() => {
+  $(".message a").click(() => {
+    $("form").toggleClass("signup-form");
+    $("img").toggleClass("signup-svg");
+  });
+});
+
+
 const form = document.querySelector(".number-form");
 const thingies = document.querySelector(".thingies");
 const numInput = document.querySelector("input[name='num']");
