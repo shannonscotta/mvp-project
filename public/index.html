@@ -20,60 +20,56 @@
         </div>
         <div class="right-side">
 
-                <form action="#" class="login-form">
+            <form action="#" class="login-form">
 
-                    <h2 class="login-heading">Login your Account</h2>
-    
-                    <label class="login-email-container"> 
-                        Email
-                        <input type="email" name="email" placeholder="johndoe@gmail.com" required />
-                    </label>
-    
-                    <br>
-                    
-                    <label class="login-password-container">
-                        Password
-                        <input type="password" name="password" placeholder="********" required />
-                    </label>
-    
-                    <br>
-    
-                    <button class="login-button" type="button" name="loginButton">
-                        Login Here
-                    </button>
-    
-                    <span> - OR - </span>
-    
-                    <p class="message">Create an account? <a href="#">&nbsp;Sign-up</a></p>
-                    
-                </form>
+                <h2 class="login-heading">Login your Account</h2>
+
+                
+                <fieldset>
+                <label class="login-email-container">
+                    Email</label>
+                <input type="email" name="email" placeholder="Enter your Email here" required />
+
+
+                
+
+                <label class="login-password-container">
+                    Password</label>
+                <input type="password" name="password" placeholder="Enter your Password here" required />
+            </fieldset>
+
+               
+
+                <button class="login-button" type="button" name="loginButton">
+                    Login Here
+                </button>
+
+                <span> - OR - </span>
+
+                <p class="message">Create an account? <a href="#">&nbsp;Sign-up</a></p>
+
+            </form>
 
             <form action="#" class="signup-form">
 
                 <h2 class="signup-heading">Create your Account</h2>
 
-                <label class="signup-name-container"> 
-                    Name
-                    <!-- min and max length for input? -->
-                    <input type="text" id="firstName" placeholder="John" required />
-                    <input type="text" id="lastName" placeholder="Doe" required />
-                </label>
+                <fieldset>
+                <label class="signup-name-container">
+                    Name</label>
+                <!-- min and max length for input? -->
+                <input type="text" id="name" placeholder="Enter your Name here" required />
+               
+                <label class="signup-email-container">
+                    Email</label>
+                <input type="email" name="email" placeholder="Enter your Email here" required />
 
-                <br>
 
-                <label class="signup-email-container"> 
-                    Email
-                    <input type="email" name="email" placeholder="johndoe@gmail.com" required />
-                </label>
-
-                <br>
-                
                 <label class="signup-password-container">
-                    Password
-                    <input type="password" name="password" placeholder="********" required />
-                </label>
-
-                <br>
+                    Password</label>
+                <input type="password" name="password" placeholder="Enter your Password here" required />
+            </fieldset>
+                
 
                 <button class="signup-button" type="button" name="signUpButton">
                     Sign-up
@@ -82,11 +78,11 @@
                 <span> - OR - </span>
 
                 <p class="message">Already have an account? <a href="#">&nbsp;Log in</a></p>
-                
+
             </form>
 
 
-    
+
         </div>
     </div>
 

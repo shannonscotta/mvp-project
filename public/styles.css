@@ -2,7 +2,10 @@
     --main-bg-color:#E5EFF8;
     --anchor-color:#6EB6FF;
     --or-color:#B0BAC3;
-}
+    --input-heading-color:#7C838A;
+    --input-bg-color:#B0BAC366;
+    --input-placeholder-color:#000000;
+}  
 
 body {
     margin: 0;
@@ -50,14 +53,61 @@ form {
     display: flex;
     flex-direction: column;
     /* border: 1px solid black; */
-    width: 75%;
-    height: 75%;
+    width: 70%;
+    height: 70%;
 }
 
 form h2 {
     margin-top: 0;
-    border: 1px solid blue;
+    /* border: 1px solid black; */
     text-align: center;
+    font-size: 26px;
+    font-weight: 600;
+}
+
+fieldset {
+    border: none;
+    margin: 0;
+    padding: 0;
+    margin-top: auto;
+    margin-bottom: auto;
+}
+
+form label {
+    font-size: 20px;
+    color: var(--input-heading-color);
+    font-weight: 500;
+}
+
+form input, form textarea {
+    height: 60px;
+    border-radius: 20px;
+    background-color: var(--input-bg-color);
+    border: none;
+    width: 89.5%;
+    font-size: 20px;              
+    font-weight: 400;              
+    font-family: 'Poppins';        
+    color: var(--input-text-color);
+    margin-bottom: 5%;
+}
+
+form input::placeholder, form textarea::placeholder {
+    font-size: 20px;
+    font-weight: 400;
+    font-family: 'Poppins';
+    line-height: normal;
+    color: var(--input-placeholder-color);
+    opacity: 0.5;
+}
+
+input, textarea {
+    padding-left: 10%;
+    background-color: var(--input-bg-color);
+}
+
+form input:focus {
+    outline: none;
 }
 
 form button {
@@ -69,6 +119,10 @@ form button {
     border: none;
     width: 100%;
     border-radius: 30px 20px 30px 20px;
+}
+
+form button:hover{
+    cursor: pointer;
 }
 
 form button:focus {
@@ -92,11 +146,14 @@ form p {
     justify-content: center;
     align-items: center;
     font-size: 18px;
+    font-weight: 400px;
     height: 1px;
-}
+    color: var(--input-heading-color); 
+} 
 
 form p a {
     text-decoration: none;
+    font-weight: 400;
     color: var(--anchor-color);
 }
 
