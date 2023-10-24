@@ -1,4 +1,1 @@
-INSERT INTO thing (num) VALUES (27);
-INSERT INTO thing (num) VALUES (89);
-INSERT INTO thing (num) VALUES (733);
-INSERT INTO thing (num) VALUES (98363);
+INSERT INTO users (name, email, password) VALUES ('scott shannon', 'scott@test.com', 'password');

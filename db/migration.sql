@@ -1,6 +1,10 @@
-DROP TABLE IF EXISTS thing;
+DROP TABLE IF EXISTS users;
 
-CREATE TABLE thing (
+CREATE TABLE users (
   id SERIAL PRIMARY KEY,
-  num INTEGER
+  name varchar(50) NOT NULL,
+  email varchar(255) NOT NULL,
+  password varchar(255) NOT NULL
 );
+
+--  email varchar(255) NOT NULL UNIQUE, --

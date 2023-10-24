@@ -4,94 +4,61 @@
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link href='https://fonts.googleapis.com/css?family=Poppins' rel='stylesheet'>
-    <script src="https://code.jquery.com/jquery-3.7.1.min.js" integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
     <title>MVP Project</title>
-    <script defer src="app.js"></script>
+    <link href="https://fonts.googleapis.com/css?family=Poppins" rel="stylesheet">
     <link rel="stylesheet" href="styles.css">
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js" integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
+    <script defer src="app.js"></script>
 </head>
 
 <body>
-
     <div class="container">
+
+        <!-- Left side images -->
         <div class="left-side">
-            <img class="signup-svg" src="signup.svg" alt="cartoon character">
-            <img class="login-svg" src="login.svg" alt="cartoon character">
+            <img class="signup-svg" src="signup.svg" alt="Signup cartoon character">
+            <img class="login-svg" src="login.svg" alt="Login cartoon character">
         </div>
+
         <div class="right-side">
-
+            <!-- Login Form -->
             <form action="#" class="login-form">
-
                 <h2 class="login-heading">Login your Account</h2>
-
-                
                 <fieldset>
-                <label class="login-email-container">
-                    Email</label>
-                <input type="email" name="email" placeholder="Enter your Email here" required />
+                    <label class="login-email-container">Email</label>
+                    <input type="email" name="email" placeholder="Enter your Email" required autocomplete="email" />
 
+                    <label class="login-password-container">Password</label>
+                    <input type="password" name="password" placeholder="Enter your Password" required autocomplete="current-password" />
+                </fieldset>
 
-                
+                <div class="error-message"></div>
 
-                <label class="login-password-container">
-                    Password</label>
-                <input type="password" name="password" placeholder="Enter your Password here" required />
-            </fieldset>
-
-               
-
-                <button class="login-button" type="button" name="loginButton">
-                    Login Here
-                </button>
-
+                <button class="login-button" type="submit">Login Here</button>
                 <span> - OR - </span>
-
                 <p class="message">Create an account? <a href="#">&nbsp;Sign-up</a></p>
-
             </form>
 
+            <!-- Signup Form -->
             <form action="#" class="signup-form">
-
                 <h2 class="signup-heading">Create your Account</h2>
-
                 <fieldset>
-                <label class="signup-name-container">
-                    Name</label>
-                <!-- min and max length for input? -->
-                <input type="text" id="name" placeholder="Enter your Name here" required />
-               
-                <label class="signup-email-container">
-                    Email</label>
-                <input type="email" name="email" placeholder="Enter your Email here" required />
+                    <label class="signup-name-container">Name</label>
+                    <input type="text" name="name" placeholder="Enter your Name" required />
 
+                    <label class="signup-email-container">Email</label>
+                    <input type="email" name="email" placeholder="Enter your Email" required autocomplete="email" />
 
-                <label class="signup-password-container">
-                    Password</label>
-                <input type="password" name="password" placeholder="Enter your Password here" required />
-            </fieldset>
-                
+                    <label class="signup-password-container">Password</label>
+                    <input type="password" name="password" placeholder="Enter your Password" autocomplete="new-password" />
+                </fieldset>
 
-                <button class="signup-button" type="button" name="signUpButton">
-                    Sign-up
-                </button>
-
+                <button class="signup-button" type="submit">Sign-up</button>
                 <span> - OR - </span>
-
                 <p class="message">Already have an account? <a href="#">&nbsp;Log in</a></p>
-
             </form>
-
-
-
         </div>
     </div>
-
-    <!-- <form class="number-form">
-        <label for="num">Number</label>
-        <input type="number" name="num" id="num" />
-        <button type="submit">Create Thing</button>
-    </form>
-    <div class="thingies"></div> -->
 </body>
 
 </html>

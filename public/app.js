@@ -1,66 +1,69 @@
-
-
-$(document).ready(() => {
-  $(".message a").click(() => {
-    $("form").toggleClass("signup-form");
-    $("img").toggleClass("signup-svg");
-  });
-});
-
-
-const form = document.querySelector(".number-form");
-const thingies = document.querySelector(".thingies");
-const numInput = document.querySelector("input[name='num']");
-
-function createThingElement(thing) {
-  const p = document.createElement("p");
-  p.addEventListener("click", () => {
-    fetch(`/things/${thing.id}`, {
-      method: "DELETE",
-    }).then(() => {
-      p.remove();
-    });
-  });
-  p.innerText = thing.num;
-
-  return p;
+// toggles between login and signup forms using jQuery
+function toggleForms() {
+  $("form").toggleClass("signup-form");
+  $("img").toggleClass("signup-svg");
 }
 
-function getThings() {
-  fetch("/things")
-    .then((response) => response.json())
-    .then((things) => {
-      thingies.innerText = "";
-      for (let thing of things) {
-        const element = createThingElement(thing);
-        thingies.append(element);
-      }
-    });
+// extracts data from a form into an object
+function getFormData(formElement) {
+  const formDataObj = new FormData(formElement);
+  const data = {};
+  formDataObj.forEach((value, key) => {
+    data[key] = value;
+  });
+  return data;
 }
 
-getThings();
-
-form.addEventListener("submit", (event) => {
-  // Prevent form from trying to auto-submit.
-  event.preventDefault();
-
-  // Get data in the form.
-  const formData = new FormData(event.target);
-  const num = formData.get("num");
-
-  fetch("/things", {
+// sends form data to a specified path on the server using fetch
+function sendFormData(path, formData) {
+  return fetch(path, {
     method: "POST",
-    // We must stringify the body, because fetch won't do it for us.
-    body: JSON.stringify({ num }),
-    headers: {
-      // We must include this, or express doesn't know how to parse the body.
-      "Content-Type": "application/json",
-    },
+    body: JSON.stringify(formData),
+    headers: { "Content-Type": "application/json" },
   })
-    .then((response) => response.json())
-    .then((thing) => {
-      numInput.value = "";
-      getThings();
-      // figure out what to do here
+  .then((response) => {
+    if (!response.ok) {
+      throw new Error("network issue");
+    }
+    return response.json();
+  });
+}
+
+// handles the login form submission
+function handleLoginFormSubmit(event) {
+  event.preventDefault();
+  const formData = getFormData(event.target);
+  sendFormData("/users/signin", formData)
+    .then((data) => {
+      if (data.message === "Logged in successfully") {
+        console.log(data.user.name);
+      } else {
+        console.error(data.message);
+      }
+    })
+    .catch((error) => {
+      console.error("fetch error:", error.message);
     });
+}
+
+// handles the signup form submission
+function handleSignupFormSubmit(event) {
+  event.preventDefault();
+  const formData = getFormData(event.target);
+  sendFormData("/users/signup", formData)
+    .then((data) => {
+      console.log(data);
+    })
+    .catch((error) => {
+      console.error("fetch error:", error.message);
+    });
+}
+
+// run the following once the page is fully loaded
+$(document).ready(() => {
+  $(".message a").click(toggleForms); // switch between forms on click
+
+  // attach event listeners to forms
+  document.querySelector(".login-form").addEventListener("submit", handleLoginFormSubmit);
+  document.querySelector(".signup-form").addEventListener("submit", handleSignupFormSubmit);
 });
