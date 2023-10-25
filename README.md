@@ -89,6 +89,8 @@ The second-best way to ensure user data safety is to employ specialized hashing 
 
 #### [Design here. Credit @ Saad Shaikh](https://www.figma.com/community/file/1287718860825078294/login-page)
 
+<!--
 ### ERD
 
 ![drawSQL MVP](drawSQL-mvp.png)
+-->
