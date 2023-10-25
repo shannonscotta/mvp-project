@@ -87,7 +87,8 @@ The second-best way to ensure user data safety is to employ specialized hashing 
 
 ![Figma - sign up](signup-ui.png)
 
-#### [Design here. Credit @ Saad Shaikh](https://www.figma.com/community/file/1287718860825078294/login-page)
+#### [Design here](https://www.figma.com/community/file/1287718860825078294/login-page) 
+Credit @ Saad Shaikh
 
 <!--
 ### ERD
