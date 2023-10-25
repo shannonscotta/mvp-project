@@ -3,89 +3,81 @@ import pg from "pg";
 import dotenv from "dotenv";
 import bcrypt from "bcrypt";
 
-// load configs from .env file
 dotenv.config();
+
 const { PORT, DATABASE_URL } = process.env;
 const app = express();
 
 // serve static files from 'public'
 app.use(express.static("public"));
 
-// handle incoming JSON requests
+// enable middleware for receiving JSON request body
 app.use(express.json());
 
-// set up Postgres client with our DB URL
+// set up Postgres client with DB URL
 const client = new pg.Client({ connectionString: DATABASE_URL });
-await client.connect();
 
-// handle errors centrally
-const errorHandler = (err, req, res, next) => {
-  console.error(err.message);
-  res.status(500).json({ message: "Internal Server Error" });
-};
+client.connect().catch(console.error);
 
-// check if user's credentials are valid
+// check if users creds are valid
 const authenticateUser = (req, res, next) => {
   const { email, password } = req.body;
 
   // find user by email in DB
-  client.query("SELECT * FROM users WHERE email = $1", [email])
-    .then(result => {
+  client
+    .query("SELECT * FROM users WHERE email = $1", [email])
+    .then((result) => {
       if (result.rows.length === 0) {
-        throw new Error("Invalid email or password");
+        throw new Error("Invalid email or password.");
       }
 
-      const user = result.rows[0];
-      // check if the provided password matches the one in the DB
+      let user = result.rows[0];
+
+      // check if the entered password matches the DB
       return bcrypt.compare(password, user.password)
-        .then(match => {
-          if (!match) throw new Error("Invalid email or password");
-          req.user = user;
-          next();
-        });
+      .then((match) => {
+        if (!match) throw new Error("Invalid email or password.");
+        req.user = user;
+        next();
+      });
     })
-    .catch(next);  
+    .catch(next);
 };
 
-// handle login route
+// handle login
 app.post("/users/signin", authenticateUser, (req, res) => {
-  const { password, ...userWithoutPassword } = req.user;
-  
-  // respond with user details, without the password
-  res.json({
-    message: "Logged in successfully",
-    user: userWithoutPassword,
-  });
+  res.json({ message: "Logged in successfully", user: req.user });
 });
 
-// handle signup route
+// handle signup
 app.post("/users/signup", (req, res, next) => {
-  const { name, email, password } = req.body;
-  const saltRounds = 10;
+  let { name, email, password } = req.body;
 
-  // hash and store the user's password
-  bcrypt.hash(password, saltRounds)
-    .then(hashedPassword => {
-      return client.query(
-        "INSERT INTO users (name, email, password) VALUES ($1, $2, $3) RETURNING *",
-        [name, email, hashedPassword]
-      );
-    })
+  // saltRounds? indicates how many iterations of algorithms, 10 salt is 2^10 aka 1024 iterations
+  let saltRounds = 10;
+
+  //bcrypt? cryptographic salted password hashing function designed to defend against rainbow table and brute-force search attacks.
+  //hashSync? securely converts a plain text password into a hashed version using salt.
+  let hashedPassword = bcrypt.hashSync(password, saltRounds);
+
+  client.query(
+      "INSERT INTO users (name, email, password) VALUES ($1, $2, $3) RETURNING *",
+      [name, email, hashedPassword]
+    )
     .then(result => {
-      if (result.rows && result.rows[0]) {
-        res.json({
-          message: "User signed up successfully",
-          user: result.rows[0],
-        });
-      } else {
-        throw new Error("User registration failed");
-      }
+      res.json({ message: "Successful registration", user: result.rows[0] });
     })
     .catch(next);
 });
 
-// use error handler for all subsequent middleware
-app.use(errorHandler);
+
+
+// middleware catch all
+app.use((err, req, res, next) => {
+  console.error(err);
+  res.status(500);
+  res.json({ message: "Internal Server Error" });
+});
 
 app.listen(PORT, () => {
   console.log(`server running on port ${PORT}`);
