@@ -4,6 +4,7 @@
 
 Access the live version [here](https://mvp-project-8vf6.onrender.com).
 
+<!--
 ## Setup
 
 ### Database Migration and Seeding
@@ -49,6 +50,7 @@ psql EXTERNAL_DB_URL_FROM_RENDER
 ```
 npm start
 ```
+-->
 
 ## Learning Points (Authentication)
 
