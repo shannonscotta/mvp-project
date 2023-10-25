@@ -77,13 +77,12 @@ Structure of a bcrypt hash:
 
 The second-best way to ensure user data safety is to employ specialized hashing functions like bcrypt, scrypt, or Argon2. The best approach, however, is to abstain from storing passwords altogether. Opt for third-party authentication platforms such as "Sign in with Google" or "Sign in with Facebook."
 
-# Figma
 
-### Login / Sign up
+## Figma Login
 
 ![Figma - log in](login-ui.png)
 
-### Figma Sign up
+## Figma Sign up
 
 ![Figma - sign up](signup-ui.png)
 
