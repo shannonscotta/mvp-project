@@ -69,6 +69,7 @@ Structure of a bcrypt hash:
 - Prefix identifying bcrypt: `$2b$`
 - Work factor: if `10$` (The algorithm runs 2^10 or 1024 iterations)
 - 22-character salt and a 31-character hash, for instance: `lNtVaIstq/hw5M6YhksiMeLS76WzMo62qrNKPMZfA3cvN1ov9EzXe`
+- Prefix, hashed, salted: `$2b$10$xk6liURAG1rz4k5FwgWf0Oy1ecZDguFjMHUVFjHB6hplbJ1r.xJsS`
 
 ### Recommendations
 

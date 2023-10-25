@@ -2,7 +2,9 @@ import express from "express";
 import pg from "pg";
 import dotenv from "dotenv";
 import bcrypt from "bcrypt";
+  //bcrypt? cryptographic salted password hashing function designed to defend against rainbow table and brute-force search attacks.
 
+  
 dotenv.config();
 
 const { PORT, DATABASE_URL } = process.env;
@@ -56,7 +58,6 @@ app.post("/users/signup", (req, res, next) => {
   // saltRounds? indicates how many iterations of algorithms, 10 salt is 2^10 aka 1024 iterations
   let saltRounds = 10;
 
-  //bcrypt? cryptographic salted password hashing function designed to defend against rainbow table and brute-force search attacks.
   //hashSync? securely converts a plain text password into a hashed version using salt.
   let hashedPassword = bcrypt.hashSync(password, saltRounds);
 
